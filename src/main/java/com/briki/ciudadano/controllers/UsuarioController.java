@@ -29,6 +29,12 @@ public class UsuarioController {
         return "crear_usuario";
     }
 
+    @PostMapping("/usuarios")
+    public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario){
+        usuarioService.guardarUsuario(usuario);
+        return "redirect:/usuarios";
+    }
+
 
 
     @GetMapping()
@@ -36,10 +42,10 @@ public class UsuarioController {
         return usuarioService.obtenerUsuarios();
     }
 
-    @PostMapping
-    public Usuario guardarUsuario(@RequestBody Usuario usuario){
-        return this.usuarioService.guardarUsuario(usuario);
-    }
+//    @PostMapping
+//    public Usuario guardarUsuario(@RequestBody Usuario usuario){
+//        return this.usuarioService.guardarUsuario(usuario);
+//    }
 
     @GetMapping(path = "/{id}")
     public Optional<Usuario> obtenerUsuarioPorId(@PathVariable("id") int id){
